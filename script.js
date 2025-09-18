@@ -127,3 +127,22 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }
   });
 });
+
+const carouselTrack = document.querySelector('.carousel-track');
+const items = Array.from(carouselTrack.children);
+
+// Duplicar los items
+items.forEach(item => {
+  const clone = item.cloneNode(true);
+  carouselTrack.appendChild(clone);
+});
+
+// Ajustar ancho dinámico
+function updateCarouselWidth() {
+  const totalWidth = Array.from(carouselTrack.children)
+    .reduce((sum, el) => sum + el.offsetWidth + 12, 0); // gap = 12px
+  carouselTrack.style.width = totalWidth + 'px';
+}
+
+window.addEventListener('resize', updateCarouselWidth);
+updateCarouselWidth();

@@ -1,90 +1,125 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Legados Collector — Reliquias y Antigüedades</title>
-<meta name="description" content="Tienda de reliquias y antigüedades — Legados Collector" />
-<link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Legados Collector — Reliquias y Antigüedades</title>
+  <meta name="description" content="Tienda de reliquias y antigüedades — Legados Collector" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-<div class="topbar">
-<div class="logo" aria-label="Legados Collector">
-<div class="badge">LC</div>
-<div>
-<div class="brand">Legados</div>
-<div class="tag">Collector — Reliquias y Antigüedades</div>
-</div>
-</div>
+  <header>
+    <div class="topbar">
+      <div class="logo" aria-label="Legados Collector">
+        <div class="badge">LC</div>
+        <div>
+          <div class="brand">Legados</div>
+          <div class="tag">Collector — Reliquias y Antigüedades</div>
+        </div>
+      </div>
 
+      <div class="searchbar" role="search">
+        <input id="searchInput" placeholder="Buscar reliquias, antigüedades, colecciones..." />
+        <button id="searchBtn">Buscar</button>
+      </div>
 
-<div class="searchbar" role="search">
-<input id="searchInput" placeholder="Buscar reliquias, antigüedades, colecciones..." />
-<button id="searchBtn">Buscar</button>
-</div>
+      <div class="icons">
+        <div class="icon">Cuenta</div>
+        <div class="icon">Pedidos</div>
+        <div class="icon" id="cartIcon">Carrito <span class="cart-count" id="cartCount">0</span></div>
+      </div>
+    </div>
+  </header>
 
+  <nav aria-label="Categorías">
+    <div class="nav-inner">
+      <div class="category">Todas</div>
+      <div class="category">Muebles</div>
+      <div class="category">Joyería</div>
+      <div class="category">Libros</div>
+      <div class="category">Monedas</div>
+      <div class="category">Instrumentos</div>
+      <div class="category">Arte</div>
+      <div class="category">Más...</div>
+    </div>
+  </nav>
+<section class="carousel" aria-label="Secciones destacadas">
+  <button class="carousel-btn prev" aria-label="Anterior">&lt;</button>
+  <div class="carousel-track">
+    <div class="carousel-item">
+      <img src="https://picsum.photos/seed/dest1/400/200" alt="Destacados 1">
+      <div class="caption">Destacados</div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/seed/dest2/400/200" alt="Nuevas Llegadas">
+      <div class="caption">Nuevas Llegadas</div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/seed/dest3/400/200" alt="Ofertas">
+      <div class="caption">Ofertas</div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/seed/dest4/400/200" alt="Colecciones">
+      <div class="caption">Colecciones</div>
+    </div>
+  </div>
+  <button class="carousel-btn next" aria-label="Siguiente">&gt;</button>
+</section>
 
-<div class="icons">
-<div class="icon">Cuenta</div>
-<div class="icon">Pedidos</div>
-<div class="icon" id="cartIcon">Carrito <span class="cart-count" id="cartCount">0</span></div>
-</div>
-</div>
-</header>
+  <main>
+    <aside class="filters" aria-label="Filtros">
+      <h3>Filtrar</h3>
 
+      <div class="filter-group">
+        <strong>Rango de precio</strong>
+        <label>Min <input type="number" id="minPrice" placeholder="0" /></label>
+        <label>Max <input type="number" id="maxPrice" placeholder="10000" /></label>
+      </div>
 
-<nav aria-label="Categorías">
-<div class="nav-inner">
-<div class="category">Todas</div>
-<div class="category">Muebles</div>
-<div class="category">Joyería</div>
-<div class="category">Libros</div>
-<div class="category">Monedas</div>
-<div class="category">Instrumentos</div>
-<div class="category">Arte</div>
-<div class="category">Más...</div>
-</div>
-</nav>
+      <div class="filter-group">
+        <strong>Condición</strong>
+        <label><input type="checkbox" class="cond" value="Original" /> Original</label>
+        <label><input type="checkbox" class="cond" value="Restaurado" /> Restaurado</label>
+      </div>
 
+      <div class="filter-group">
+        <button id="applyFilters" class="btn">Aplicar filtros</button>
+      </div>
+    </aside>
 
-<main>
-<aside class="filters" aria-label="Filtros">
-<h3>Filtrar</h3>
+    <section>
+      <div class="content-top">
+        <div id="resultsInfo">Mostrando <span id="resultCount">0</span> artículos</div>
+        <div class="sort">
+          <label for="sortSelect">Ordenar:</label>
+          <select id="sortSelect">
+            <option value="relevance">Relevancia</option>
+            <option value="price_asc">Precio: menor a mayor</option>
+            <option value="price_desc">Precio: mayor a menor</option>
+          </select>
+        </div>
+      </div>
 
+      <div class="grid" id="productGrid">
+        <!-- Productos renderizados por JS -->
+      </div>
+    </section>
+  </main>
 
-<div class="filter-group">
-<strong>Rango de precio</strong>
-<label>Min <input type="number" id="minPrice" placeholder="0" /></label>
-<label>Max <input type="number" id="maxPrice" placeholder="10000" /></label>
-</div>
+  <!-- Modal simple -->
+  <div id="modalBackdrop" class="modal-backdrop hidden" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div id="modalContent"></div>
+      <div style="text-align:right;margin-top:12px;">
+        <button id="closeModal" class="btn">Cerrar</button>
+      </div>
+    </div>
+  </div>
 
+  <footer>
+    © <span id="year"></span> Legados Collector — Todos los derechos reservados
+  </footer>
 
-<div class="filter-group">
-<strong>Condición</strong>
-<label><input type="checkbox" class="cond" value="Original" /> Original</label>
-<label><input type="checkbox" class="cond" value="Restaurado" /> Restaurado</label>
-</div>
-
-
-<div class="filter-group">
-<button id="applyFilters" class="btn">Aplicar filtros</button>
-</div>
-</aside>
-
-
-<section>
-<div class="content-top">
-<div id="resultsInfo">Mostrando <span id="resultCount">0</span> artículos</div>
-<div class="sort">
-<label for="sortSelect">Ordenar:</label>
-<select id="sortSelect">
-<option value="relevance">Relevancia</option>
-<option value="price_asc">Precio: menor a mayor</option>
-<option value="price_desc">Precio: mayor a menor</option>
-</select>
-</div>
-</div>
-
+  <script src="script.js"></script>
+</body>
 </html>
