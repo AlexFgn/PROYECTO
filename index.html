@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Legados Collector — Reliquias y Antigüedades</title>
+<meta name="description" content="Tienda de reliquias y antigüedades — Legados Collector" />
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+<body>
+<header>
+<div class="topbar">
+<div class="logo" aria-label="Legados Collector">
+<div class="badge">LC</div>
+<div>
+<div class="brand">Legados</div>
+<div class="tag">Collector — Reliquias y Antigüedades</div>
+</div>
+</div>
+
+
+<div class="searchbar" role="search">
+<input id="searchInput" placeholder="Buscar reliquias, antigüedades, colecciones..." />
+<button id="searchBtn">Buscar</button>
+</div>
+
+
+<div class="icons">
+<div class="icon">Cuenta</div>
+<div class="icon">Pedidos</div>
+<div class="icon" id="cartIcon">Carrito <span class="cart-count" id="cartCount">0</span></div>
+</div>
+</div>
+</header>
+
+
+<nav aria-label="Categorías">
+<div class="nav-inner">
+<div class="category">Todas</div>
+<div class="category">Muebles</div>
+<div class="category">Joyería</div>
+<div class="category">Libros</div>
+<div class="category">Monedas</div>
+<div class="category">Instrumentos</div>
+<div class="category">Arte</div>
+<div class="category">Más...</div>
+</div>
+</nav>
+
+
+<main>
+<aside class="filters" aria-label="Filtros">
+<h3>Filtrar</h3>
+
+
+<div class="filter-group">
+<strong>Rango de precio</strong>
+<label>Min <input type="number" id="minPrice" placeholder="0" /></label>
+<label>Max <input type="number" id="maxPrice" placeholder="10000" /></label>
+</div>
+
+
+<div class="filter-group">
+<strong>Condición</strong>
+<label><input type="checkbox" class="cond" value="Original" /> Original</label>
+<label><input type="checkbox" class="cond" value="Restaurado" /> Restaurado</label>
+</div>
+
+
+<div class="filter-group">
+<button id="applyFilters" class="btn">Aplicar filtros</button>
+</div>
+</aside>
+
+
+<section>
+<div class="content-top">
+<div id="resultsInfo">Mostrando <span id="resultCount">0</span> artículos</div>
+<div class="sort">
+<label for="sortSelect">Ordenar:</label>
+<select id="sortSelect">
+<option value="relevance">Relevancia</option>
+<option value="price_asc">Precio: menor a mayor</option>
+<option value="price_desc">Precio: mayor a menor</option>
+</select>
+</div>
+</div>
+
+</html>
